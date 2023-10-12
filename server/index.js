@@ -18,8 +18,8 @@ io.on("connection", async (socket) => {
     console.log(`user disconnected: ${socket.id}`)
   })
 
-  socket.on("chat message", async ({ message, date }) => {
-    io.emit("chat message", { message, date })
+  socket.on("chat message", async ({ message, date, username }) => {
+    io.emit("chat message", { message, date, username })
   })
 })
 

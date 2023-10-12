@@ -46,7 +46,7 @@ body {
   outline: none;
 }
 
-#form button {
+.btn-info {
   background-color: #456;
   border: none;
   padding: 0.8rem;
@@ -72,13 +72,41 @@ body {
   position: relative;
 }
 
-#messages > li:nth-child(even) {
+.own-message {
   background-color: #333;
 }
 
-.message-date {
-  opacity: .8;
+.metadata-message {
+  opacity: 0.8;
   position: absolute;
   bottom: 5px;
   right: 10px;
+}
+
+#formLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid #888;
+  padding: 1rem;
+  width: 300px;
+  height: 300px;
+}
+
+#formLogin > label > input {
+  padding: 0.6rem 1rem;
+  outline: none;
+}
+
+#formLogin > label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#sectionLogin {
+  display: grid;
+  place-items: center;
 }
