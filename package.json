@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "server:dev": "node --watch ./server/index.js",
+    "prettier": "prettier -w .",
+    "eslint": "eslint --fix .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,5 +19,14 @@
     "morgan": "1.10.0",
     "prisma": "5.4.2",
     "socket.io": "4.7.2"
+  },
+  "devDependencies": {
+    "eslint": "8.51.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "prettier": "3.0.3"
   }
 }

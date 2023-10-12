@@ -1,7 +1,7 @@
 import express from "express"
 import dotenv from "dotenv"
 import { Server } from "socket.io"
-import { createServer } from 'node:http'
+import { createServer } from "node:http"
 import logger from "morgan"
 
 const app = express()
@@ -18,13 +18,13 @@ io.on("connection", async (socket) => {
     console.log(`user disconnected: ${socket.id}`)
   })
 
-  socket.on("chat message", async ({message}) => {
+  socket.on("chat message", async ({ message }) => {
     io.emit("chat message", { message })
   })
 })
 
 app.use(express.static("client"))
-app.use(logger('dev'))
+app.use(logger("dev"))
 
 // API
 app.get("/api/", (req, res) => {
