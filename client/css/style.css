@@ -16,6 +16,7 @@ body {
   display: grid;
   place-items: center;
   padding: 20px;
+  grid-template-rows: 1fr;
 }
 
 #section {
@@ -24,6 +25,7 @@ body {
   border: 1px solid #333;
   display: grid;
   grid-template-rows: 1fr 60px;
+  overflow: hidden;
 }
 
 #form {
@@ -60,7 +62,7 @@ body {
   align-items: center;
   gap: 5px;
   list-style: none;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-behavior: smooth;
 }
 
