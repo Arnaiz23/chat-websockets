@@ -1,11 +1,17 @@
 import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js"
+// import { Toaster, toast } from 'https://cdn.jsdelivr.net/npm/sonner@1.0.3/+esm'
 
-const socket = io()
+const socket = io({
+  auth: {
+    username: localStorage.getItem("username"),
+  },
+})
 
 const form = document.getElementById("form")
 const input = document.getElementById("input")
 const messages = document.getElementById("messages")
 const logout = document.getElementById("logout-button")
+const body = document.querySelector("body")
 
 socket.on("chat message", ({ message, date, username }) => {
   const messageDate = new Date(date).toLocaleString()
@@ -13,7 +19,7 @@ socket.on("chat message", ({ message, date, username }) => {
 
   if (username === localStorage.getItem("username")) {
     classItem = "own-message"
-  } 
+  }
 
   messages.insertAdjacentHTML(
     "beforeend",
@@ -28,6 +34,21 @@ socket.on("chat message", ({ message, date, username }) => {
   messages.scrollTop = messages.scrollHeight
 })
 
+socket.on("user disconnected", ({ username }) => {
+  body.insertAdjacentHTML(
+    "beforeend",
+    `
+    <div class="alert" id="alert-${username}">
+      <h2>The user ${username} disconnect</h2>
+    </div>
+  `
+  )
+  const alert = document.getElementById(`alert-${username}`)
+  setTimeout(() => {
+    alert.remove()
+  }, 1000)
+})
+
 form.addEventListener("submit", (e) => {
   e.preventDefault()
   const username = localStorage.getItem("username")
@@ -40,7 +61,7 @@ form.addEventListener("submit", (e) => {
 })
 
 logout.addEventListener("click", () => {
-  if(localStorage.getItem("username")) {
+  if (localStorage.getItem("username")) {
     localStorage.removeItem("username")
     location.href = "http://localhost:3000"
   }

@@ -16,6 +16,8 @@ io.on("connection", async (socket) => {
 
   socket.on("disconnect", () => {
     console.log(`user disconnected: ${socket.id}`)
+    const disconnectedUser = socket.handshake.auth.username
+    io.emit("user disconnected", { username: disconnectedUser })
   })
 
   socket.on("chat message", async ({ message, date, username }) => {
