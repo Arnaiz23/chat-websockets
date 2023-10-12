@@ -9,7 +9,13 @@ const messages = document.getElementById("messages")
 socket.on("chat message", ({ message, date }) => {
   const messageDate = new Date(date).toLocaleString()
 
-  messages.insertAdjacentHTML("beforeend", `<li><p>${message}</p><small>${messageDate}</small></li>`)
+  messages.insertAdjacentHTML(
+    "beforeend",
+    `<li>
+      <p>${message}</p>
+      <small class="message-date">${messageDate}</small>
+    </li>`
+  )
   messages.scrollTop = messages.scrollHeight
 })
 

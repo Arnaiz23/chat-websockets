@@ -70,4 +70,12 @@ body {
   width: 100%;
   padding: 10px;
   border-bottom: 1px solid #888;
+  position: relative;
+}
+
+.message-date {
+  opacity: .8;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
 }
