@@ -5,6 +5,7 @@ const socket = io()
 const form = document.getElementById("form")
 const input = document.getElementById("input")
 const messages = document.getElementById("messages")
+const logout = document.getElementById("logout-button")
 
 socket.on("chat message", ({ message, date, username }) => {
   const messageDate = new Date(date).toLocaleString()
@@ -35,5 +36,12 @@ form.addEventListener("submit", (e) => {
     const date = new Date()
     socket.emit("chat message", { message: input.value, date, username })
     input.value = ""
+  }
+})
+
+logout.addEventListener("click", () => {
+  if(localStorage.getItem("username")) {
+    localStorage.removeItem("username")
+    location.href = "http://localhost:3000"
   }
 })
