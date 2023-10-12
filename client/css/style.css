@@ -60,7 +60,6 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 5px;
   list-style: none;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -71,6 +70,10 @@ body {
   padding: 10px;
   border-bottom: 1px solid #888;
   position: relative;
+}
+
+#messages > li:nth-child(even) {
+  background-color: #333;
 }
 
 .message-date {
