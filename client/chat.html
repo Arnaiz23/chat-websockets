@@ -1,21 +1,38 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Arnaizdev - chat</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="css/style.css" rel="stylesheet" />
-    <script type="module" src="js/chat.js"></script>
-  </head>
 
-  <body>
-    <button type="button" id="logout-button">Logout</button>
-    <section id="section">
-      <ul id="messages"></ul>
-      <form id="form">
-        <input type="text" id="input" />
-        <button type="submit" class="btn-info">Send</button>
-      </form>
-    </section>
-  </body>
+<head>
+  <title>Arnaizdev - chat</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="css/style.css" rel="stylesheet" />
+  <script type="module" src="js/chat.js"></script>
+</head>
+
+<body>
+  <button type="button" id="logout-button">Logout</button>
+  <button type="button" id="user-list-button">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="24" height="24"
+      viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+      <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+      <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+    </svg>
+    <span class="users-active-number" id="users-active-number"></span>
+  </button>
+  <section id="users-list">
+    <h3>Active users</h3>
+  </section>
+  <section id="section">
+    <ul id="messages"></ul>
+    <form id="form">
+      <input type="text" id="input" />
+      <button type="submit" class="btn-info">Send</button>
+    </form>
+  </section>
+</body>
+
 </html>

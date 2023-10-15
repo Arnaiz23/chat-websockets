@@ -11,13 +11,19 @@ dotenv.config()
 
 const PORT = process.env.PORT ?? 3000
 
+const activeUsers = []
+
 io.on("connection", async (socket) => {
   const connectedUser = socket.handshake.auth.username
-  io.emit("user connected", { username: connectedUser })
+  activeUsers.push(connectedUser)
+  console.log(activeUsers)
+  io.emit("user connected", { username: connectedUser, activeUsers })
 
   socket.on("disconnect", () => {
     const disconnectedUser = socket.handshake.auth.username
-    io.emit("user disconnected", { username: disconnectedUser })
+    const index = activeUsers.findIndex((user) => user === disconnectedUser)
+    activeUsers.splice(index, 1)
+    io.emit("user disconnected", { username: disconnectedUser, activeUsers })
   })
 
   socket.on("chat message", async ({ message, date, username }) => {

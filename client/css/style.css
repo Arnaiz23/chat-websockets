@@ -137,3 +137,26 @@ body {
   font-size: 18px;
   border-radius: 10px;
 }
+
+#user-list-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#users-list {
+  display: none;
+}
+
+.users-active-number {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  font-weight: bold;
+  background-color: red;
+  width: 15px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
