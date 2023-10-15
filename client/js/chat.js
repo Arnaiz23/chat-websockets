@@ -25,6 +25,9 @@ socket.on("chat message", ({ message, date, username }) => {
 
   if (username === localStorage.getItem("username")) {
     classItem = "own-message"
+  } else {
+    const sound = new Audio("../public/alert.mp3")
+    sound.play()
   }
 
   messages.insertAdjacentHTML(
