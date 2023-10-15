@@ -15,6 +15,7 @@ const body = document.querySelector("body")
 const usersListBtn = document.getElementById("user-list-button")
 const usersListModal = document.getElementById("users-list")
 const usersActiveNumber = document.getElementById("users-active-number")
+const usersActiveListMax = document.getElementById("users-active-list-max")
 
 const alertTemplate = ({ username, text }) => `
   <div class="alert" id="alert-${username}">
@@ -59,11 +60,13 @@ socket.on("user disconnected", ({ username, activeUsers }) => {
   localStorage.setItem("active-users", activeUsers)
 
   usersActiveNumber.innerHTML = activeUsers.length
+  renderActiveList(usersActiveListMax)
 })
 
 socket.on("user connected", ({ username, activeUsers }) => {
   localStorage.setItem("active-users", activeUsers)
   usersActiveNumber.innerHTML = activeUsers.length
+  renderActiveList(usersActiveListMax)
 
   if (username === localStorage.getItem("username")) return
 
@@ -101,6 +104,16 @@ function getActiveUsers() {
   const activeUsersArray = activeUsers.split(",")
   return activeUsersArray
 }
+
+function renderActiveList(element) {
+  element.innerHTML = ""
+  const activeUsers = getActiveUsers()
+  activeUsers.map((username) =>
+    element.insertAdjacentHTML("beforeend", `<li>${username}</li>`),
+  )
+}
+
+renderActiveList(usersActiveListMax)
 
 const activeUsers = getActiveUsers()
 usersActiveNumber.innerHTML = activeUsers.length
