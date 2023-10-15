@@ -13,6 +13,12 @@ const messages = document.getElementById("messages")
 const logout = document.getElementById("logout-button")
 const body = document.querySelector("body")
 
+const alertTemplate = (username) => `
+  <div class="alert" id="alert-${username}">
+    <h4>The user ${username} connect</h4>
+  </div>
+`
+
 socket.on("chat message", ({ message, date, username }) => {
   const messageDate = new Date(date).toLocaleString()
   let classItem = ""
@@ -29,20 +35,13 @@ socket.on("chat message", ({ message, date, username }) => {
         <small>${messageDate}</small>
         <small>${username}</small>
       </div>
-    </li>`
+    </li>`,
   )
   messages.scrollTop = messages.scrollHeight
 })
 
 socket.on("user disconnected", ({ username }) => {
-  body.insertAdjacentHTML(
-    "beforeend",
-    `
-    <div class="alert" id="alert-${username}">
-      <h2>The user ${username} disconnect</h2>
-    </div>
-  `
-  )
+  body.insertAdjacentHTML("beforeend", alertTemplate(username))
   const alert = document.getElementById(`alert-${username}`)
   setTimeout(() => {
     alert.remove()
@@ -50,14 +49,10 @@ socket.on("user disconnected", ({ username }) => {
 })
 
 socket.on("user connected", ({ username }) => {
-  body.insertAdjacentHTML(
-    "beforeend",
-    `
-    <div class="alert" id="alert-${username}">
-      <h2>The user ${username} connect</h2>
-    </div>
-  `
-  )
+  if (username === localStorage.getItem("username")) return
+
+  body.insertAdjacentHTML("beforeend", alertTemplate(username))
+
   const alert = document.getElementById(`alert-${username}`)
   setTimeout(() => {
     alert.remove()

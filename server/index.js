@@ -12,12 +12,10 @@ dotenv.config()
 const PORT = process.env.PORT ?? 3000
 
 io.on("connection", async (socket) => {
-  // console.log(`user connected: ${socket.id}`)
   const connectedUser = socket.handshake.auth.username
   io.emit("user connected", { username: connectedUser })
 
   socket.on("disconnect", () => {
-    console.log(`user disconnected: ${socket.id}`)
     const disconnectedUser = socket.handshake.auth.username
     io.emit("user disconnected", { username: disconnectedUser })
   })

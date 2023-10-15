@@ -131,9 +131,9 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: max-content;
-  padding: 20px;
-  background-color: #aaa;
-  color: #fff;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #000;
   font-size: 18px;
   border-radius: 10px;
 }
