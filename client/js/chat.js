@@ -49,6 +49,21 @@ socket.on("user disconnected", ({ username }) => {
   }, 1000)
 })
 
+socket.on("user connected", ({ username }) => {
+  body.insertAdjacentHTML(
+    "beforeend",
+    `
+    <div class="alert" id="alert-${username}">
+      <h2>The user ${username} connect</h2>
+    </div>
+  `
+  )
+  const alert = document.getElementById(`alert-${username}`)
+  setTimeout(() => {
+    alert.remove()
+  }, 1000)
+})
+
 form.addEventListener("submit", (e) => {
   e.preventDefault()
   const username = localStorage.getItem("username")
