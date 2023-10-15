@@ -16,6 +16,7 @@ const usersListBtn = document.getElementById("user-list-button")
 const usersListModal = document.getElementById("users-list")
 const usersActiveNumber = document.getElementById("users-active-number")
 const usersActiveListMax = document.getElementById("users-active-list-max")
+const usersActiveList = document.getElementById("users-active-list")
 
 const alertTemplate = ({ username, text }) => `
   <div class="alert" id="alert-${username}">
@@ -119,9 +120,19 @@ const activeUsers = getActiveUsers()
 usersActiveNumber.innerHTML = activeUsers.length
 
 usersListBtn.addEventListener("click", () => {
-  const activeUsers = getActiveUsers()
-  const renderList = activeUsers.map((username) => `<li>${username}</li>`)
-  console.log({ renderList, count: activeUsers.length })
-  // Get all the users and create the ul
-  usersListModal.insertAdjacentHTML("beforeend", `<ul></ul>`)
+  renderActiveList(usersActiveList)
+  usersListModal.classList.toggle("user-modal-active")
+})
+
+body.addEventListener("click", (e) => {
+  // TODO: the if not working well
+  if (
+    (usersListBtn.contains(e.target) || usersListModal.contains(e.target)) &&
+    !usersListModal.classList.contains("user-modal-active")
+  ){
+    usersListModal.classList.remove("user-modal-active")
+    console.log("click outside button, modal and the modal don't have class")
+  } else {
+    console.log("click inside button, modal or the modal have class")
+  }
 })

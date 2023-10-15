@@ -183,6 +183,28 @@ body {
   border-radius: 50%;
 }
 
+.user-modal-active {
+  display: flex !important;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #fff;
+  width: 250px;
+  height: 250px;
+  justify-content: flex-start;
+  align-items: center;
+  padding-block: 20px;
+  position: absolute;
+  z-index: 10;
+}
+
+.user-modal-active > ul {
+  width: 80%;
+  padding-inline: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 @media screen and (width >= 1164px) {
   body {
     grid-template-columns: 300px 1fr;
